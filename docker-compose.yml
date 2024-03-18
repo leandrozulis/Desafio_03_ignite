@@ -1,0 +1,11 @@
+version: '4.26.0'
+
+services:
+  desafio_03_ignite:
+    image: bitnami/postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=dmFsdWU6dXNlcm5hbWU=
+      - POSTGRESQL_PASSWORD=dmFsdWU6cGFzc3dvcmQ=
+      - POSTGRESQL_DATABASE=desafioignite
