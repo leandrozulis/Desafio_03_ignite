@@ -9,6 +9,10 @@ interface registerUseCaseRequest {
   email: string
   password: string
   isOrg: boolean
+
+  endereco: string
+  cidade: string
+  whatsapp: string
 }
 
 interface registerUseCaseResponse {
@@ -34,7 +38,9 @@ export class registerUseCase {
     nome,
     email,
     password,
-    isOrg
+    isOrg ,
+
+    endereco, cidade, whatsapp
   }:registerUseCaseRequest): Promise<registerUseCaseResponse> {
 
     const doesEmailExists = await this.registerUser.findByEmail(email)
@@ -56,9 +62,11 @@ export class registerUseCase {
 
     if (IsItAnOrg) {
 
-      let org = this.createOrg
+      let org: registerOrgResponse = await this.createOrg({endereco, cidade, whatsapp})
 
-      user = await this.registerUser.includeOrg(org)
+      let orgId: string = org.org.id
+
+      user = await this.registerUser.includeOrg(orgId)
       
     }
 
