@@ -58,15 +58,15 @@ export class registerUseCase {
       isOrg
     })
 
-    const IsItAnOrg = await this.registerUser.validadeIsOrg(user.isOrg)
+    // const IsItAnOrg = await this.registerUser.validadeIsOrg(user.id)
 
-    if (IsItAnOrg) {
+    if (user.isOrg) {
 
       let org: registerOrgResponse = await this.createOrg({endereco, cidade, whatsapp})
 
       let orgId: string = org.org.id
 
-      user = await this.registerUser.includeOrg(orgId)
+      user = await this.registerUser.includeOrg(user.id, orgId)
       
     }
 
