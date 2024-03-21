@@ -30,22 +30,6 @@ export class PrismaUserUseCase implements registerUserUseCaseRepository {
 
   }
 
-  async validadeIsOrg(id: string) {
-    
-    const user = await prisma.user.findFirst({
-      where: {
-        id
-      }
-    })
-
-    if (!user?.isOrg) {
-      return null
-    }
-
-    return user
-
-  }
-
   async includeOrg(id: string, orgId: string) {
 
     const user = await prisma.user.update({
