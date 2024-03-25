@@ -22,7 +22,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
 
     const rep = MakeRegisterUser()
 
-    const user = await rep.execute({
+    await rep.execute({
       nome,
       email,
       password,
@@ -32,7 +32,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
       whatsapp
     })
 
-    return reply.status(201).send(user)
+    return reply.status(201).send()
 
   } catch (err) {
     if (err instanceof AlreadyExistsError) {

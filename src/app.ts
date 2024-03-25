@@ -1,12 +1,12 @@
 import fastify from "fastify";
-import { appRoute } from "./http/controllers/routes";
+import { routeUser } from "./http/controllers/User/routes";
 import { ZodError } from "zod";
 import { env } from "./env";
 import { routePet } from "./http/controllers/Pet/routePet";
 
 export const app = fastify()
 
-app.register(appRoute)
+app.register(routeUser)
 app.register(routePet)
 
 app.setErrorHandler((error, _, reply) => {

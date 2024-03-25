@@ -18,12 +18,12 @@ export async function authenticate(request: FastifyRequest, reply: FastifyReply)
 
     const rep = MakeAuthenticate()
 
-    const user = await rep.execute({
+    await rep.execute({
       email,
       password
     })
 
-    return reply.status(200).send(user)
+    return reply.status(200).send('Login Authenticate!')
 
   } catch (err) {
     if (err instanceof AuthenticateFailed) {
