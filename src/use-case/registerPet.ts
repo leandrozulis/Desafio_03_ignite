@@ -1,4 +1,4 @@
-import { Classificacao, Pet } from "@prisma/client";
+import { Pet } from "@prisma/client";
 import { registerPetUseCaseRepository } from "@/repository/pet-use-case-repository";
 
 interface registerPetUseCaseRequest {
@@ -7,7 +7,6 @@ interface registerPetUseCaseRequest {
   tamanho: string
   cidade: string
   detalhes: string
-  classificacao: Classificacao
   id: string
 }
 
@@ -26,7 +25,6 @@ export class registerPetUseCase {
     tamanho,
     cidade,
     detalhes,
-    classificacao,
     id
   }:registerPetUseCaseRequest): Promise<registerPetUseCaseResponse> {
 
@@ -36,7 +34,6 @@ export class registerPetUseCase {
       tamanho,
       cidade,
       detalhes,
-      classificacao,
       org_id: id
     })
 
