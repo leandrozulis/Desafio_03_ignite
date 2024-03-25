@@ -20,11 +20,17 @@ model Pet {
   tamanho  String
   cidade   String
   detalhes String?
+  classificacao Classificacao @default(DISPONIVEL)
 
   org    Org    @relation(fields: [org_id], references: [id])
   org_id String
 
   @@map("pets")
+}
+
+enum Classificacao {
+  DISPONIVEL
+  RESERVADO
 }
 
 model User {

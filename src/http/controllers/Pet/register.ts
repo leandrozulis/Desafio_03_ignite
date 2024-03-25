@@ -9,7 +9,8 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     raca: z.string(),
     tamanho: z.string(),
     cidade: z.string(),
-    detalhes: z.string()
+    detalhes: z.string(),
+    classificacao: z.enum(['DISPONIVEL', 'RESERVADO'])
   })
 
   const querySchemaPet = z.object({
@@ -29,6 +30,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
       tamanho, 
       cidade,
       detalhes,
+      classificacao: 'DISPONIVEL',
       id
     })
 

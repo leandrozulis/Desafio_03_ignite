@@ -2,9 +2,9 @@
   "name": "desafio_03_ignite",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "tsx --watch ./src/server.ts",
+    "dev": "tsx watch ./src/server.ts",
     "build": "tsup src --out-dir build",
     "start": "node ./build/server.js"
   },
