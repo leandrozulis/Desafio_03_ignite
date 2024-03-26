@@ -14,7 +14,8 @@ export async function listarPets(request: FastifyRequest, reply: FastifyReply) {
     const pet = MakeListarManyPets()
 
     const pets = await pet.execute({
-      query
+      query,
+      classificacao: 'DISPONIVEL'
     })
 
     return reply.status(200).send(pets)

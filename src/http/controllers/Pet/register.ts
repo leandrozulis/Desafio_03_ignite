@@ -1,6 +1,6 @@
 import { MakeRegisterPet } from "@/use-case/factories/make-register-pet";
 import { FastifyReply, FastifyRequest } from "fastify";
-import { ZodError, z } from "zod";
+import { z } from "zod";
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
 

@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 
 export class PrismaOrgUseCase implements orgUseCaseRepository {
 
-  async create(data: Prisma.OrgCreateInput): Promise<{ id: string; endereco: string | null; cidade: string | null; whatsapp: string | null; }> {
+  async create(data: Prisma.OrgCreateInput) {
     
     const org = await prisma.org.create({
       data

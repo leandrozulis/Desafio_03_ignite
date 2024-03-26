@@ -1,14 +1,9 @@
-import { Pet } from "@prisma/client";
 import { registerPetUseCaseRepository } from "@/repository/pet-use-case-repository";
-import { NotFoundError } from "./erros/Not-found-error";
+import { NotFoundError } from "./erros/not-found-error";
+
 
 interface visualizaPetUseCaseRequest {
   id: string
-  detalhes: string
-}
-
-interface visualizaPetUseCaseResponse {
-  detalhes: string | null
 }
 
 export class visualizaPetUseCase {
@@ -18,7 +13,7 @@ export class visualizaPetUseCase {
 
   async execute({
     id
-  }:visualizaPetUseCaseRequest): Promise<visualizaPetUseCaseResponse> {
+  }:visualizaPetUseCaseRequest) {
 
     const pet = await this.visualizaPet.findById(id)
 
@@ -26,7 +21,9 @@ export class visualizaPetUseCase {
       throw new NotFoundError()
     }
 
-    return { pet.detalhes }
+    return {
+      DetalhesPet: pet.detalhes
+    }
 
   }
 
