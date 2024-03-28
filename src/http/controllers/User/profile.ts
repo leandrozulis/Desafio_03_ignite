@@ -3,8 +3,6 @@ import { FastifyReply, FastifyRequest } from "fastify";
 
 export async function profile(request: FastifyRequest, reply: FastifyReply) {
 
-  await request.jwtVerify()
-
   const profileUser = MakeGetProfileUser()
 
   const { user } = await profileUser.execute({
