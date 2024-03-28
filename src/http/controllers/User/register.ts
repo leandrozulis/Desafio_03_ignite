@@ -10,13 +10,14 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     email: z.string().email(),
     password: z.string().min(6),
     isOrg: z.boolean(),
+    role: z.enum(['ADMIN', 'MEMBER']),
 
     endereco: z.string().default(''),
     cidade: z.string().default(''),
     whatsapp: z.string().default('')
   })
 
-  const { nome, email, password, isOrg, endereco, cidade, whatsapp } = bodySchema.parse(request.body)
+  const { nome, email, password, isOrg, endereco, cidade, whatsapp, role } = bodySchema.parse(request.body)
 
   try {
 
@@ -27,6 +28,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
       email,
       password,
       isOrg,
+      role,
       endereco,
       cidade,
       whatsapp

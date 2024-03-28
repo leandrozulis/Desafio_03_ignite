@@ -14,12 +14,12 @@ datasource db {
 }
 
 model Pet {
-  id       String  @id @default(uuid())
-  nome     String
-  raca     String
-  tamanho  String
-  cidade   String
-  detalhes String?
+  id            String        @id @default(uuid())
+  nome          String
+  raca          String
+  tamanho       String
+  cidade        String
+  detalhes      String?
   classificacao Classificacao @default(DISPONIVEL)
 
   org    Org    @relation(fields: [org_id], references: [id])
@@ -33,11 +33,17 @@ enum Classificacao {
   RESERVADO
 }
 
+enum Role {
+  ADMIN
+  MEMBER
+}
+
 model User {
   id            String   @id @default(uuid())
   nome          String
   email         String   @unique
   password_hash String
+  role          Role
   created_at    DateTime @default(now())
   isOrg         Boolean
 

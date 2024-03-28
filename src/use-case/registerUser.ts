@@ -1,5 +1,5 @@
 import { registerUserUseCaseRepository } from "@/repository/registerUser-use-case-repository";
-import { Org, User } from "@prisma/client";
+import { Org, Role, User } from "@prisma/client";
 import { AlreadyExistsError } from "./erros/already-exists-error";
 import { hash } from "bcryptjs";
 import { MakeRegisterOrg } from "./factories/make-register-org";
@@ -8,6 +8,7 @@ interface registerUseCaseRequest {
   nome: string
   email: string
   password: string
+  role: Role
   isOrg: boolean
 
   endereco: string
@@ -38,7 +39,8 @@ export class registerUseCase {
     nome,
     email,
     password,
-    isOrg ,
+    isOrg,
+    role,
 
     endereco, cidade, whatsapp
   }:registerUseCaseRequest): Promise<registerUseCaseResponse> {
@@ -55,7 +57,8 @@ export class registerUseCase {
       nome,
       email,
       password_hash,
-      isOrg
+      isOrg,
+      role
     })
 
     if (user.isOrg) {
