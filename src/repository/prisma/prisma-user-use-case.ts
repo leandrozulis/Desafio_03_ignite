@@ -1,12 +1,28 @@
-import { Prisma } from "@prisma/client";
+import { $Enums, Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { registerUserUseCaseRepository } from "../registerUser-use-case-repository";
 
 export class PrismaUserUseCase implements registerUserUseCaseRepository {
 
+  async findById(id: string) {
+    
+    const user = await prisma.user.findFirst({
+      where: {
+        id
+      }
+    })
+
+    if (!user) {
+      return null
+    }
+
+    return user
+
+  }
+
   async create(data: Prisma.UserCreateInput) {
     
-    const user = prisma.user.create({
+    const user = await prisma.user.create({
       data
     })
 

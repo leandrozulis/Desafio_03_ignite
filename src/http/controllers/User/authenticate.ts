@@ -18,12 +18,21 @@ export async function authenticate(request: FastifyRequest, reply: FastifyReply)
 
     const rep = MakeAuthenticate()
 
-    await rep.execute({
+    const { user } = await rep.execute({
       email,
       password
     })
 
-    return reply.status(200).send('Login Authenticate!')
+    const token = await reply.jwtSign(
+      {},
+      {
+        sign: {
+          sub: user.id
+        }
+      }
+    )
+
+    return reply.status(200).send(token)
 
   } catch (err) {
     if (err instanceof AuthenticateFailed) {

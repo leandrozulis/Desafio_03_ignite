@@ -3,8 +3,13 @@ import { routeUser } from "./http/controllers/User/routes";
 import { ZodError } from "zod";
 import { env } from "./env";
 import { routePet } from "./http/controllers/Pet/routePet";
+import fastifyJwt from "@fastify/jwt";
 
 export const app = fastify()
+
+app.register(fastifyJwt, {
+  secret: env.JWT_SECRET
+})
 
 app.register(routeUser)
 app.register(routePet)
